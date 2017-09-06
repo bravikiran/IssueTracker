@@ -1,0 +1,13 @@
+#spacebetweennav{
+    padding-top: 65px;
+}
+
+footer{
+    color: white;
+    font-size: large;
+    text-align: center;
+}
+
+footer, navbar, p{
+    padding-top: 10px;
+}
