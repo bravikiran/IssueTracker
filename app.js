@@ -1,7 +1,4 @@
-var el = document.getElementById('issueInputform');
-if(el){
-    el.addEventListener('submit', saveIssue, false);
-  }
+var e = document.getElementById('issueInputform');
 
 function saveIssue(e){
     let issuesDescription = document.getElementById('issueDescInput').value;
@@ -35,14 +32,37 @@ function saveIssue(e){
     e.preventDefault();
 }
 
+function setStatusClosed() {
+    var issues = JSON.parse(localStorage.getItem('issues'));
+    
+    for (var i = 0; i < issues.length; i++) {
+        if (issues[i].id == id) {
+            issues[i].status = 'closed';
+        }
+    }
+
+    localStorage.getItem('issues', JSON.stringify(issues));
+    
+    fetchIssues();
+}
+
+function deleteIssue() {
+    var issues = JSON.parse(localStorage.getItem('issues'));
+    
+    for (var i = 0; i < issues.length; i++) {
+        if (issues[i].id == id) {
+            issues.splice(i, 1);
+        }
+    }
+
+    localStorage.getItem('issues', JSON.stringify(issues));
+    
+    fetchIssues();
+}
+
 function fetchIssues() {
 
     let issues  = JSON.parse(localStorage.getItem('issues'));
-    if (issues) {
-        return [];
-    }else{
-        return issues;
-    }
     let issuesList = document.getElementById('issuesList');
     
     issuesList.innerHTML = "";
